@@ -57,6 +57,7 @@ Encore
     .addAliases({
         '@js': path.resolve(__dirname, 'assets', 'js'),
         '@css': path.resolve(__dirname, 'assets', 'css'),
+        '@img': path.resolve(__dirname, 'assets', 'img'),
     })
 
     .enableVueLoader((options) => {
@@ -64,9 +65,9 @@ Encore
             whitespace: 'preserve',
             runtimeCompilerBuild: true
         }
-    });
-// enables Sass/SCSS support
-//.enableSassLoader()
+    })
+    // enables Sass/SCSS support
+    .enableSassLoader()
 
 // uncomment if you use TypeScript
 //.enableTypeScriptLoader()
@@ -80,5 +81,5 @@ Encore
 
 // uncomment if you're having problems with a jQuery plugin
 //.autoProvidejQuery()
-
+;
 module.exports = Encore.getWebpackConfig();

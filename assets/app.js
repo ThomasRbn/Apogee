@@ -1,18 +1,12 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
+import '@css/global.scss';
 
-// any CSS you import will output into a single css file (app.css in this case)
-import './css/app.css';
-
-import { createApp } from 'vue'
-import Pouet from '@js/components/Pouet.vue'
+import { createApp } from 'vue';
+import MainHeader from "@js/components/MainHeader.vue";
+import MainPage from "@js/components/MainPage.vue";
 
 const app = createApp({});
-app.component('Pouet', Pouet);
+app.component('main-header', MainHeader);
+app.component('main-page', MainPage);
 app.mount('#app');
 
 

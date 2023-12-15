@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bf631c4-080f-46a7-8624-207c06afab9f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/css/app.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/components/Pouet.vue" afterDir="false" />
+    <list default="true" id="5bf631c4-080f-46a7-8624-207c06afab9f" name="Changes" comment="Add Webpack and fake vue component">
+      <change afterPath="$PROJECT_DIR$/assets/css/global.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/img/apogee.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/components/Header.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/vendor/@hotwired/stimulus/stimulus.index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/vendor/@hotwired/turbo/turbo.index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/vendor/installed.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/app.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/components/Pouet.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/components/Pouet.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -200,7 +197,7 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;21.4.0&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.10.4&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/thomas/Repositories/Apogee&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/thomas/Repositories/Apogee/assets/img&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -217,6 +214,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/img" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates" />
     </key>
@@ -244,8 +244,18 @@
       <updated>1702579265488</updated>
       <workItem from="1702579266516" duration="1199000" />
       <workItem from="1702580472596" duration="2163000" />
-      <workItem from="1702582649408" duration="619000" />
+      <workItem from="1702582649408" duration="5702000" />
+      <workItem from="1702635978010" duration="536000" />
     </task>
+    <task id="LOCAL-00001" summary="Add Webpack and fake vue component">
+      <option name="closed" value="true" />
+      <created>1702583564016</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702583564016</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,5 +271,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add Webpack and fake vue component" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Webpack and fake vue component" />
   </component>
 </project>
