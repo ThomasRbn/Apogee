@@ -8,7 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 class AppFixtures extends Fixture
 {
 
-    private int $MAX_PRODUCTS = 30;
+    private int $MAX_PRODUCTS = 25;
 
     public function load(ObjectManager $manager): void
     {
