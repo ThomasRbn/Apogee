@@ -12,6 +12,7 @@ interface Product {
 
 const products = ref<Array<Product>>([]);
 const lastPage = ref<number>(0);
+const currentPage = ref<number>(1);
 
 
 onMounted(async () => {
@@ -25,6 +26,7 @@ onMounted(async () => {
 });
 
 function onChangePage(limit: number, page: number) {
+  currentPage.value = page;
   axios.get(`/api/product?limit=${limit}&page=${page}`)
       .then(response => {
         products.value = response.data['products'];
@@ -57,7 +59,7 @@ function onChangePage(limit: number, page: number) {
           </tr>
           </tbody>
         </table>
-        <Pagination :on-change-page="onChangePage" :last-page="lastPage" :current-page="1" :per-page="10"></Pagination>
+        <Pagination :on-change-page="onChangePage" :last-page="lastPage" :current-page="currentPage" :per-page="10"></Pagination>
       </div>
     </div>
   </div>

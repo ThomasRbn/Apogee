@@ -35,18 +35,18 @@ const pages = computed(() => {
   <div class="d-flex justify-content-center">
     <ul class="pagination">
       <li class="page-item">
-        <a class="page-link" @click="props.onChangePage(props.perPage,1)">First</a>
+        <a class="page-link" @click="props.onChangePage(props.perPage, 1)">First</a>
       </li>
-      <li v-for="page in pages" class="page-item">
-        <a class="page-link" @click="props.onChangePage(props.perPage,page)">{{ page }}</a>
+      <li v-for="page in pages" :key="page" class="page-item" :class="{ 'active': page === props.currentPage }">
+        <a class="page-link" @click="props.onChangePage(props.perPage, page)">{{ page }}</a>
       </li>
       <li class="page-item">
-        <a class="page-link" @click="props.onChangePage(props.perPage,props.lastPage)">Last</a>
+        <a class="page-link" @click="props.onChangePage(props.perPage, props.lastPage)">Last</a>
       </li>
     </ul>
   </div>
-
 </template>
+
 
 <style scoped>
 
