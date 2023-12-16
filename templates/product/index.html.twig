@@ -3,5 +3,5 @@
 {% block title %}Hello ProductController!{% endblock %}
 
 {% block body %}
-<product-index :products="{{ products }}"></product-index>
+<product-index :products="{{ products|serialize }}"></product-index>
 {% endblock %}

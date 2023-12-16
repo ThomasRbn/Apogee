@@ -23,8 +23,14 @@ class ProductController extends AbstractController
             10
         );
 
+        $realProducts = [];
+        foreach ($products->getItems() as $product) {
+            $realProducts[] = $product->toArray();
+        }
+
+//        dd($realProducts);
         return $this->render('product/index.html.twig', [
-            'products' => serialize($products->getItems()),
+            'products' => $realProducts,
         ]);
     }
 }

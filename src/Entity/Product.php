@@ -52,6 +52,16 @@ class Product
         return $this;
     }
 
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'description' => $this->getDescription(),
+            'price' => $this->getPrice(),
+        ];
+    }
+
     //Getters
 
     public function getId(): ?int
