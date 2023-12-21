@@ -16,16 +16,22 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Product name cannot be blank')]
+    #[Assert\Length(min: 3, max: 50,
+        minMessage: 'Product name must be at least {{ limit }} characters long',
+        maxMessage: 'Product name cannot be longer than {{ limit }} characters')]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Product description cannot be blank')]
+    #[Assert\Length(min: 3, max: 255,
+        minMessage: 'Product description must be at least {{ limit }} characters long',
+        maxMessage: 'Product description cannot be longer than {{ limit }} characters')]
     private ?string $description = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank]
-    #[Assert\Positive]
+    #[Assert\NotBlank(message: 'Product price cannot be blank')]
+    #[Assert\Positive(message: 'Product price must be positive')]
     private ?float $price = null;
 
     #[ORM\Column]
@@ -40,6 +46,15 @@ class Product
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
+    }
+
+    public static function createProduct(string $name, string $description, float $price): self
+    {
+        $product = new Product();
+        $product->name = $name;
+        $product->description = $description;
+        $product->price = $price;
+        return $product;
     }
 
 

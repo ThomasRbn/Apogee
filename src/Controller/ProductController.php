@@ -2,35 +2,49 @@
 
 namespace App\Controller;
 
-use App\Repository\ProductRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Entity\Product;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class ProductController extends AbstractController
 {
     #[Route('/product', name: 'product.index')]
-    public function index(
-        PaginatorInterface $paginator,
-        ProductRepository  $productRepository,
-        Request            $request): Response
+    public function index(): Response
     {
-        $products = $paginator->paginate(
-            $productRepository->findAll(),
-            $request->query->getInt('page', 1),
-            10
-        );
+        return $this->render('product/index.html.twig');
+    }
 
-        $realProducts = [];
-        foreach ($products->getItems() as $product) {
-            $realProducts[] = $product->toArray();
-        }
+    #[Route('/product/new', name: 'product.new')]
+    public function new(): Response
+    {
+        return $this->render('product/new.html.twig');
+    }
 
-//        dd($realProducts);
-        return $this->render('product/index.html.twig', [
-            'products' => $realProducts,
+
+    #[Route('/product/{id}', name: 'product.show')]
+    public function show(Product $product): Response
+    {
+        return $this->render('product/show.html.twig', [
+            'product' => $product->toArray()
         ]);
+    }
+
+    #[Route('/product/edit/{id}', name: 'product.edit')]
+    public function edit(Product $product): Response
+    {
+        return $this->render('product/edit.html.twig', [
+            'product' => $product->toArray()
+        ]);
+    }
+
+    #[Route('/product/delete/{id}', name: 'product.delete')]
+    public function delete(Product $product, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($product);
+        $entityManager->flush();
+
+        return $this->render('product/index.html.twig');
     }
 }

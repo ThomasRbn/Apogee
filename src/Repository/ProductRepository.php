@@ -46,4 +46,8 @@ class ProductRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function createProduct(mixed $name, mixed $description, mixed $price)
+    {
+
+    }
 }
