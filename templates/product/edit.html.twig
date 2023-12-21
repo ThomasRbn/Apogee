@@ -5,7 +5,9 @@
 {% endblock %}
 
 {% block body %}
-
+    <div class="container mt-4">
+        <product-edit :product="{{ product|serialize }}"></product-edit>
+    </div>
 {% endblock %}
 
 

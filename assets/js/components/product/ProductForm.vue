@@ -1,20 +1,34 @@
 <script setup lang="ts">
-import {computed, reactive} from 'vue';
+import {computed, PropType, reactive, ref} from 'vue';
 import {useVuelidate} from '@vuelidate/core';
 import {maxLength, minLength, minValue, required} from '@vuelidate/validators';
 import axios from "axios";
 import Swal from 'sweetalert2';
 
 interface Product {
+  id: number;
   name: string;
   price: number;
   description: string;
 }
 
-const formData = reactive<Product>({
-  name: null,
-  price: null,
-  description: null,
+const props = defineProps({
+  product: {
+    type: Object as PropType<Product>,
+    required: false,
+  },
+  buttonText: {
+    type: String,
+    required: false,
+    default: 'Create Product',
+  },
+});
+
+const formData = ref<Product>({
+  id: props.product ? props.product.id : null,
+  name: props.product ? props.product.name : null,
+  price: props.product ? props.product.price : null,
+  description: props.product ? props.product.description : null,
 });
 
 const rules = computed(() => {
@@ -44,16 +58,26 @@ const createProduct = async () => {
     return;
   }
 
-
-  axios.post('/api/product', formData)
-      .then(() => {
-        Swal.fire(
-            'Product created!',
-            'The product has been created successfully.',
-            'success'
-        ).then(() => {
-          window.location.href = '/product'
-        });
+  axios.post('/api/product', formData.value)
+      .then((response) => {
+        if (formData.value.id) {
+          Swal.fire(
+              'Product updated!',
+              'The product has been updated successfully.',
+              'info'
+          ).then(() => {
+            window.location.href = '/product'
+          });
+          return;
+        } else {
+          Swal.fire(
+              'Product created!',
+              'The product has been created successfully.',
+              'success'
+          ).then(() => {
+            window.location.href = '/product'
+          });
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -102,7 +126,7 @@ const createProduct = async () => {
         <span v-for="error in v$.description.$errors" :key="error.$uid" class="text-danger">{{ error.$message }}</span>
       </div>
 
-      <button type="submit" class="btn btn-primary">Create Product</button>
+      <button type="submit" class="btn btn-primary">{{ props.buttonText }}</button>
     </form>
   </div>
 </template>

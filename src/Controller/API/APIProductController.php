@@ -12,10 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use function PHPUnit\Framework\assertNotNull;
 
 class APIProductController extends AbstractController
 {
-    #[Route('/api/product', name: 'apiProductList', methods: ['GET'])]
+    #[Route('/api/product', name: 'apiProductGET', methods: ['GET'])]
     public function getProducts(
         ProductRepository $productRepository,
         Request           $request
@@ -39,19 +40,23 @@ class APIProductController extends AbstractController
         return new JsonResponse($realProducts);
     }
 
-    #[Route('/api/product', name: 'apiProductCreate', methods: ['POST'])]
+    #[Route('/api/product', name: 'apiProductPOST', methods: ['POST'])]
     public function createProduct(
         Request                $request,
+        ProductRepository      $productRepository,
         EntityManagerInterface $entityManager,
         ValidatorInterface     $validator
     ): Response
     {
         $data = json_decode($request->getContent(), true);
-        $product = Product::createProduct(
-            $data['name'],
-            $data['description'],
-            $data['price']
-        );
+//        var_dump($data);
+
+    if (isset($data['id'])){
+        $product = $productRepository->find($data['id']);
+    } else {
+        $product = new Product();
+    }
+        $product->updateProduct($data['name'], $data['description'], $data['price']);
 
         $errors = $validator->validate($product);
         if (count($errors) > 0) {
@@ -64,10 +69,9 @@ class APIProductController extends AbstractController
             return new JsonResponse(['errors' => $errorMessages], Response::HTTP_BAD_REQUEST);
         }
 
-        //valider le produit en fonction des assert de l'entité
-
         $entityManager->persist($product);
         $entityManager->flush();
+
         return new JsonResponse($product->toArray());
     }
 }

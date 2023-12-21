@@ -48,20 +48,10 @@ class Product
         $this->updatedAt = new \DateTimeImmutable();
     }
 
-    public static function createProduct(string $name, string $description, float $price): self
-    {
-        $product = new Product();
-        $product->name = $name;
-        $product->description = $description;
-        $product->price = $price;
-        return $product;
-    }
-
-
     public function updateProduct(string $name, string $description, float $price): self
     {
-        $this->name = $name == null ? $this->name : $name;
-        $this->description = $description == null ? $this->description : $description;
+        $this->name = $name == null ? $this->name : trim($name);
+        $this->description = $description == null ? $this->description : trim($description);
         $this->price = $price == null ? $this->price : $price;
         $this->updatedAt = new \DateTimeImmutable();
         return $this;
