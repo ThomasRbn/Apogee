@@ -9,10 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Validation;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use function PHPUnit\Framework\assertNotNull;
 
 class APIProductController extends AbstractController
 {
@@ -49,13 +47,12 @@ class APIProductController extends AbstractController
     ): Response
     {
         $data = json_decode($request->getContent(), true);
-//        var_dump($data);
 
-    if (isset($data['id'])){
-        $product = $productRepository->find($data['id']);
-    } else {
-        $product = new Product();
-    }
+        if (isset($data['id'])) {
+            $product = $productRepository->find($data['id']);
+        } else {
+            $product = new Product();
+        }
         $product->updateProduct($data['name'], $data['description'], $data['price']);
 
         $errors = $validator->validate($product);
