@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+    # Service MariaDB
+    mariadb:
+        image: mariadb:latest
+        platform: linux/arm64
+        environment:
+            MYSQL_ROOT_USER: root
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: admin
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./docker/mysql_data:/var/lib/mysql
+
+    # Service phpMyAdmin
+    phpmyadmin:
+        image: phpmyadmin:latest
+        links:
+            - mariadb
+        environment:
+            PMA_HOST: mariadb
+            PMA_PORT: 3306
+        ports:
+            - "8080:80"
+        depends_on:
+            - mariadb

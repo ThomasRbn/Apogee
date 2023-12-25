@@ -21,6 +21,7 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
+        "docker" : "docker-compose up -d",
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
