@@ -57,7 +57,6 @@ class APIProductController extends AbstractController
 
         $errors = $validator->validate($product);
         if (count($errors) > 0) {
-            // Des erreurs de validation ont été détectées, vous pouvez les traiter ici
             $errorMessages = [];
             foreach ($errors as $error) {
                 $errorMessages[] = $error->getMessage();

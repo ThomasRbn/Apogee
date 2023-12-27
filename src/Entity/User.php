@@ -57,6 +57,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->roles = ['ROLE_USER'];
     }
 
+    public function updateIdentifier(string $email, string $plainPassword): self
+    {
+        $this->email = $email == null ? $this->email : trim($email);
+        $this->plainPassword = $plainPassword == null ? $this->plainPassword : trim($plainPassword);
+        return $this;
+    }
+
     public function updateIdentity(string $firstName, string $lastName): self
     {
         $this->firstName = $firstName == null ? $this->firstName : trim($firstName);
@@ -109,7 +116,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     public function getRoles(): array
@@ -129,7 +136,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
-         $this->plainPassword = null;
+        $this->plainPassword = null;
     }
 
     public function getFirstName(): ?string

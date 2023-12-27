@@ -5,6 +5,7 @@ import {email, helpers, maxLength, minLength, required, sameAs} from "@vuelidate
 import {useVuelidate} from "@vuelidate/core";
 import axios from "axios";
 import {User} from "@js/types/types.ts";
+import Swal from "sweetalert2";
 
 const props = defineProps({
   user: {
@@ -92,9 +93,19 @@ const submitUser = async () => {
     return;
   }
 
-  axios.post('/api/users', formData.value)
+  console.log(formData.value)
+
+  axios.post('/api/user', formData.value)
     .then((response) => {
       console.log(response);
+      Swal.fire({
+        title: 'Success!',
+        text: 'Your account has been created.',
+        icon: 'success',
+        confirmButtonText: 'Nice!',
+      }).then(() => {
+        window.location.href = '/';
+      });
     })
     .catch((error) => {
       console.log(error);
