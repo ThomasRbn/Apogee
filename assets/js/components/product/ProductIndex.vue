@@ -1,3 +1,33 @@
+<script setup lang="ts">
+import axios from "axios";
+import {onMounted, ref} from "vue";
+import Pagination from "@js/components/misc/Pagination.vue";
+import {Product} from "@js/types/types.ts";
+
+const products = ref<Array<Product>>([]);
+const lastPage = ref<number>(0);
+const currentPage = ref<number>(1);
+
+onMounted(async () => {
+  try {
+    const response = await axios.get("/api/product");
+    products.value = response.data['products'];
+    lastPage.value = Math.ceil(response.data['count'] / 10);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+});
+
+function onChangePage(limit: number, page: number) {
+  currentPage.value = page;
+  axios.get(`/api/product?limit=${limit}&page=${page}`)
+      .then(response => {
+        products.value = response.data['products'];
+      })
+      .catch(error => console.error("Error fetching products:", error));
+}
+</script>
+
 <template>
   <div class="container">
     <div class="row">
@@ -28,47 +58,9 @@
           </tr>
           </tbody>
         </table>
-        <Pagination :on-change-page="onChangePage" :last-page="lastPage" :current-page="currentPage" :per-page="10"></Pagination>
+        <Pagination :on-change-page="onChangePage" :last-page="lastPage" :current-page="currentPage"
+                    :per-page="10"></Pagination>
       </div>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import axios from "axios";
-import {onMounted, ref} from "vue";
-import Pagination from "../misc/Pagination.vue";
-import {useRouter} from "vue-router";
-
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-}
-
-const products = ref<Array<Product>>([]);
-const lastPage = ref<number>(0);
-const currentPage = ref<number>(1);
-
-
-onMounted(async () => {
-  try {
-    const response = await axios.get("/api/product");
-    products.value = response.data['products'];
-    lastPage.value = Math.ceil(response.data['count'] / 10);
-  } catch (error) {
-    console.error("Error fetching products:", error);
-  }
-});
-
-function onChangePage(limit: number, page: number) {
-  currentPage.value = page;
-  axios.get(`/api/product?limit=${limit}&page=${page}`)
-      .then(response => {
-        products.value = response.data['products'];
-      })
-      .catch(error => console.error("Error fetching products:", error));
-}
-
-</script>

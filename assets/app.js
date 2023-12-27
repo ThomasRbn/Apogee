@@ -1,21 +1,20 @@
 import '@css/global.scss';
 
 import {createApp} from 'vue';
-import MainHeader from "@js/components/MainHeader.vue";
-import MainPage from "@js/components/MainPage.vue";
-import ProductIndex from "@js/components/product/ProductIndex.vue";
-import ProductShow from "@js/components/product/ProductShow.vue";
-import ProductNew from "@js/components/product/ProductNew.vue";
-import ProductEdit from "@js/components/product/ProductEdit.vue";
 
 const app = createApp({});
 
-app.component('main-header', MainHeader);
-app.component('main-page', MainPage);
-app.component('product-index', ProductIndex);
-app.component('product-show', ProductShow);
-app.component('product-new', ProductNew)
-app.component('product-edit', ProductEdit)
+app.component('main-header', require('@js/components/MainHeader.vue').default);
+app.component('main-page', require('@js/components/MainPage.vue').default);
+
+//Product
+app.component('product-index', require('@js/components/product/ProductIndex.vue').default);
+app.component('product-show', require('@js/components/product/ProductShow.vue').default);
+app.component('product-new', require('@js/components/product/ProductNew.vue').default);
+app.component('product-edit', require('@js/components/product/ProductEdit.vue').default);
+
+//User
+app.component('user-register', require('@js/components/user/UserRegister.vue').default);
 app.mount('#app');
 
 

@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class APIProductController extends AbstractController
 {
     #[Route('/api/product', name: 'apiProductGET', methods: ['GET'])]
-    public function getProducts(
+    public function get(
         ProductRepository $productRepository,
         Request           $request
     ): Response
@@ -39,7 +39,7 @@ class APIProductController extends AbstractController
     }
 
     #[Route('/api/product', name: 'apiProductPOST', methods: ['POST'])]
-    public function createProduct(
+    public function post(
         Request                $request,
         ProductRepository      $productRepository,
         EntityManagerInterface $entityManager,

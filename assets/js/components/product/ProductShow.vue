@@ -1,20 +1,6 @@
-<template>
-  <div class="d-flex flex-column justify-content-center align-content-center product-details mt-5">
-    <h1>{{ product.name }}</h1>
-    <p>{{ product.description }}</p>
-    <p><strong>Price:</strong> ${{ product.price.toFixed(2) }}</p>
-  </div>
-</template>
-
 <script setup lang="ts">
-import { PropType } from "vue";
-
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-}
+import {PropType} from "vue";
+import {Product} from "@js/types/types.ts";
 
 defineProps({
   product: {
@@ -23,6 +9,14 @@ defineProps({
   },
 });
 </script>
+
+<template>
+  <div class="d-flex flex-column justify-content-center align-content-center product-details mt-5">
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.description }}</p>
+    <p><strong>Price:</strong> ${{ product.price.toFixed(2) }}</p>
+  </div>
+</template>
 
 <style scoped>
 /* Ajoutez vos styles spécifiques au composant ici */

@@ -4,13 +4,8 @@ import {useVuelidate} from '@vuelidate/core';
 import {maxLength, minLength, minValue, required} from '@vuelidate/validators';
 import axios from "axios";
 import Swal from 'sweetalert2';
+import {Product} from "@js/types/types";
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-}
 
 const props = defineProps({
   product: {
@@ -19,8 +14,7 @@ const props = defineProps({
   },
   buttonText: {
     type: String,
-    required: false,
-    default: 'Create Product',
+    required: true,
   },
 });
 
@@ -52,7 +46,7 @@ const rules = computed(() => {
 
 const v$ = useVuelidate(rules, formData);
 
-const createProduct = async () => {
+const submitProduct = async () => {
   const result = await v$.value.$validate();
   if (!result) {
     return;
@@ -94,7 +88,7 @@ const createProduct = async () => {
     <!--      <p>Description: {{ formData.description }}</p>-->
     <!--    </div>-->
 
-    <form @submit.prevent="createProduct" class="mb-3">
+    <form @submit.prevent="submitProduct" class="mb-3">
       <div class="mb-3">
         <label for="productName" class="form-label">Product Name:</label>
         <input

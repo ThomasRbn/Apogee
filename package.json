@@ -32,7 +32,6 @@
         "@vuelidate/validators": "^2.0.4",
         "axios": "^1.6.2",
         "sweetalert2": "^11.10.1",
-        "ts-loader": "^9.5.1",
-        "vue-router": "4"
+        "ts-loader": "^9.5.1"
     }
 }

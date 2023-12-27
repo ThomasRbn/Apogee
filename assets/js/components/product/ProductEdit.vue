@@ -1,13 +1,7 @@
 <script setup lang="ts">
-import ProductForm from './ProductForm.vue';
+import ProductForm from '@js/components/product/ProductForm.vue';
 import {PropType} from "vue";
-
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-}
+import {Product} from "@js/types/types.ts";
 
 const props = defineProps({
   product: {
@@ -18,6 +12,8 @@ const props = defineProps({
 </script>
 
 <template>
-  <h1>Edit a product</h1>
-  <ProductForm :product="props.product"/>
+  <div class="container mt-4">
+    <h1>Edit a product</h1>
+    <ProductForm :product="props.product" button-text="Update product"/>
+  </div>
 </template>
