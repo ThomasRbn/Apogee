@@ -55,19 +55,6 @@ class APIProductController extends AbstractController
         }
         $product->updateProduct($data['name'], $data['description'], $data['price']);
 
-        $errors = $validator->validate($product);
-        if (count($errors) > 0) {
-            $errorMessages = [];
-            foreach ($errors as $error) {
-                $errorMessages[] = $error->getMessage();
-            }
-
-            return new JsonResponse(['errors' => $errorMessages], Response::HTTP_BAD_REQUEST);
-        }
-
-        $entityManager->persist($product);
-        $entityManager->flush();
-
-        return new JsonResponse($product->toArray());
+        return APIController::validateAndPersist($product, $validator, $entityManager);
     }
 }

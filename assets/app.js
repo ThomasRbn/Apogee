@@ -15,6 +15,7 @@ app.component('product-edit', require('@js/components/product/ProductEdit.vue').
 
 //User
 app.component('user-register', require('@js/components/user/UserRegister.vue').default);
+app.component('user-login', require('@js/components/user/UserLogin.vue').default);
 app.mount('#app');
 
 
