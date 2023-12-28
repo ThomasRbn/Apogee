@@ -93,23 +93,27 @@ const submitUser = async () => {
     return;
   }
 
-  console.log(formData.value)
-
   axios.post('/api/user', formData.value)
-    .then((response) => {
-      console.log(response);
-      Swal.fire({
-        title: 'Success!',
-        text: 'Your account has been created.',
-        icon: 'success',
-        confirmButtonText: 'Nice!',
-      }).then(() => {
-        window.location.href = '/';
+      .then((response) => {
+        console.log(response);
+        Swal.fire({
+          title: 'Success!',
+          text: formData.value.id ? 'Account updated successfully' : 'Account created successfully',
+          icon: 'success',
+          confirmButtonText: 'Nice!',
+        }).then(() => {
+          window.location.href = '/';
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          title: 'Something went wrong!',
+          text: formData.value.id ? `Account could not be updated` : `Account could not be created`,
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        });
       });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
 };
 </script>
 
@@ -218,7 +222,3 @@ const submitUser = async () => {
     <button type="submit" class="btn btn-primary">{{ props.buttonText }}</button>
   </form>
 </template>
-
-<style scoped>
-/* Add any additional styling if needed */
-</style>

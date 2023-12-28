@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit your information{% endblock %}
+
+{% block body %}
+    <user-edit :user="{{ user|serialize }}"></user-edit>
+{% endblock %}

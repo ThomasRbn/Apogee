@@ -18,13 +18,14 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class APIUserController extends AbstractController
 {
     #[Route('/api/user', name: 'apiUserPOST', methods: ['POST'])]
-    public function post(Request $request, ValidatorInterface $validator, EntityManagerInterface $entityManager): Response
+    public function post(Request $request, ValidatorInterface $validator, EntityManagerInterface $entityManager,
+                         UserRepository $repository, UserPasswordHasherInterface $hasher): Response
     {
         $data = json_decode($request->getContent(), true);
         var_dump($data);
 
         if (isset($data['id'])) {
-//            $user = $userRepository->find($data['id']);
+            $user = $repository->find($data['id']);
         } else {
             $user = new User();
         }
@@ -32,7 +33,7 @@ class APIUserController extends AbstractController
         $user->updateIdentifier($data['email'], $data['plainPassword']);
         $user->updateIdentity($data['firstName'], $data['lastName']);
         $user->updateAddress($data['address'], $data['city'], $data['zipcode']);
-        return APIController::validateAndPersist($user, $validator, $entityManager);
+        return APIController::validateAndPersistUser($user, $validator, $entityManager, $hasher);
     }
 
     #[Route('/api/user/login', name: 'apiUserLogin', methods: ['POST'])]
