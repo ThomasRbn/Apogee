@@ -15,7 +15,6 @@
               <h2 class="text-center">Straight from space</h2>
             </span>
           </div>
-
         </div>
       </div>
     </div>
