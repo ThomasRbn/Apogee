@@ -52,6 +52,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     private ?string $plainPassword = null;
 
+    #[ORM\OneToOne(mappedBy: 'owner', cascade: ['persist', 'remove'])]
+    private ?Cart $cart = null;
+
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];
@@ -167,6 +170,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getPlainPassword()
     {
         return $this->plainPassword;
+    }
+
+    public function getCart(): ?Cart
+    {
+        return $this->cart;
+    }
+
+    public function setCart(Cart $cart): static
+    {
+        // set the owning side of the relation if necessary
+        if ($cart->getOwner() !== $this) {
+            $cart->setOwner($this);
+        }
+
+        $this->cart = $cart;
+
+        return $this;
     }
 
 }
