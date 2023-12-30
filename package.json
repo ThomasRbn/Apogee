@@ -4,7 +4,6 @@
         "@babel/preset-env": "^7.16.0",
         "@symfony/webpack-encore": "^4.0.0",
         "@types/vue-router": "^2.0.0",
-        "bootstrap": "^5.3.2",
         "core-js": "^3.23.0",
         "fork-ts-checker-webpack-plugin": "^9.0.2",
         "regenerator-runtime": "^0.13.9",
@@ -21,7 +20,7 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
-        "docker" : "docker-compose up -d",
+        "docker": "docker-compose up -d",
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",

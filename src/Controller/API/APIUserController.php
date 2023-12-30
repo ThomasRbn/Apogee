@@ -52,4 +52,14 @@ class APIUserController extends AbstractController
             return new JsonResponse('Invalid credentials', Response::HTTP_UNAUTHORIZED);
         }
     }
+
+    #[Route('/api/user/current', name: 'apiUserCurrent', methods: ['GET'])]
+    public function current(): Response
+    {
+        /**
+         * @var User $user
+         */
+        $user = $this->getUser();
+        return new JsonResponse($user?->toArray());
+    }
 }

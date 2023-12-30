@@ -4,7 +4,7 @@
       <div class="shadow p-0 bg-white rounded-5">
         <div class="d-flex flex-row vh-50">
           <div class="d-flex justify-content-center align-items-center poto">
-            <img class="m-1" src="@img/apogee.png" width="500">
+            <img class="m-1" src="apogee.png" width="500">
           </div>
 
           <div class="d-flex flex-column justify-content-center align-items-center text-white p-4 rounded-end-5 poto"

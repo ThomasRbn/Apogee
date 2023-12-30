@@ -1,5 +1,3 @@
-import '@css/global.scss';
-
 import {createApp} from 'vue';
 
 const app = createApp({});
