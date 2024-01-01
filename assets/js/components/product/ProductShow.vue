@@ -1,13 +1,24 @@
 <script setup lang="ts">
 import {PropType} from "vue";
 import {Product} from "@js/types/types.ts";
+import QuantitySelector from "@js/components/misc/QuantitySelector.vue";
+import axios from "axios";
 
-defineProps({
+const props = defineProps({
   product: {
     type: Object as PropType<Product>,
     required: true,
   },
 });
+
+async function onAddtoCart(counter) {
+  axios.post('/api/cart/add', {
+    product: props.product,
+    quantity: counter
+  }).then((response) => {
+    console.log(response.data);
+  });
+}
 </script>
 
 <template>
@@ -15,11 +26,11 @@ defineProps({
     <h1>{{ product.name }}</h1>
     <p>{{ product.description }}</p>
     <p><strong>Price:</strong> ${{ product.price.toFixed(2) }}</p>
+    <QuantitySelector :on-submit="onAddtoCart"/>
   </div>
 </template>
 
 <style scoped>
-/* Ajoutez vos styles spécifiques au composant ici */
 .product-details {
   max-width: 400px;
   margin: auto;

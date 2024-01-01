@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,9 +14,12 @@ class UserController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function edit(): Response
     {
+        /**
+         * @var User $user
+         */
         $user = $this->getUser();
         return $this->render('user/edit.html.twig', [
-            'user' => $user,
+            'user' => $user->toArray(),
         ]);
     }
 }

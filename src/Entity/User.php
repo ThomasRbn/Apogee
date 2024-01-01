@@ -53,11 +53,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $plainPassword = null;
 
     #[ORM\OneToOne(mappedBy: 'owner', cascade: ['persist', 'remove'])]
-    private ?Cart $cart = null;
+    private ?Cart $cart;
 
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];
+        $this->cart = new Cart($this);
     }
 
     public function updateIdentifier(string $email, string $plainPassword): self

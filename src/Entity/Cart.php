@@ -22,10 +22,12 @@ class Cart
     #[ORM\OneToMany(mappedBy: 'cart', targetEntity: CartItem::class, orphanRemoval: true)]
     private Collection $items;
 
-    public function __construct()
+    public function __construct(User $owner)
     {
         $this->items = new ArrayCollection();
+        $this->setOwner($owner);
     }
+
 
     public function getId(): ?int
     {
@@ -44,22 +46,21 @@ class Cart
         return $this;
     }
 
-    /**
-     * @return Collection<int, CartItem>
-     */
     public function getItems(): Collection
     {
         return $this->items;
     }
 
-    public function addItem(CartItem $item): static
+    public function addItem(Product $product, int $quantity)
     {
-        if (!$this->items->contains($item)) {
-            $this->items->add($item);
-            $item->setCart($this);
+        foreach ($this->items as $currentItem) {
+            if ($product === $currentItem->getProduct()) {
+                $currentItem->setQuantity($currentItem->getQuantity() + $quantity);
+                return $currentItem;
+            }
         }
 
-        return $this;
+        return new CartItem($product, $quantity, $this);
     }
 
     public function removeItem(CartItem $item): static

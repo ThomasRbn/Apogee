@@ -15,14 +15,21 @@ class CartItem
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Product $product = null;
+    private ?Product $product;
 
     #[ORM\Column]
-    private ?int $quantity = null;
+    private ?int $quantity;
 
     #[ORM\ManyToOne(inversedBy: 'items')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Cart $cart = null;
+    private ?Cart $cart;
+
+    public function __construct(Product $product, int $quantity, Cart $cart)
+    {
+        $this->product = $product;
+        $this->quantity = $quantity;
+        $this->cart = $cart;
+    }
 
     public function getId(): ?int
     {
