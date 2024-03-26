@@ -1,0 +1,36 @@
+{
+    "devDependencies": {
+        "@babel/core": "^7.17.0",
+        "@babel/preset-env": "^7.16.0",
+        "@symfony/webpack-encore": "^4.0.0",
+        "@types/vue-router": "^2.0.0",
+        "core-js": "^3.23.0",
+        "fork-ts-checker-webpack-plugin": "^9.0.2",
+        "regenerator-runtime": "^0.13.9",
+        "sass": "^1.69.5",
+        "sass-loader": "^13.0.0",
+        "typescript": "^5.3.3",
+        "vue": "^3.3.11",
+        "vue-loader": "^17.3.1",
+        "vue-template-compiler": "^2.7.15",
+        "webpack": "^5.74.0",
+        "webpack-cli": "^4.10.0",
+        "webpack-notifier": "^1.15.0"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "docker": "docker-compose up -d",
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@vuelidate/core": "^2.0.3",
+        "@vuelidate/validators": "^2.0.4",
+        "axios": "^1.6.2",
+        "sweetalert2": "^11.10.1",
+        "ts-loader": "^9.5.1"
+    }
+}
