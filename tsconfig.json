@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "sourceMap": true
+  },
+  "include": [
+    "assets/**/*.ts"
+  ],
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.d.ts",
+    "node_modules"
+  ]
+}

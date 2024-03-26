@@ -49,7 +49,7 @@
             "ref": "6c28c471640cc2c6e60812ebcb961c526ef8997f"
         },
         "files": [
-            "assets/app.js",
+            "assets/app.ts",
             "assets/styles/app.css",
             "config/packages/asset_mapper.yaml",
             "importmap.php"
@@ -285,7 +285,7 @@
             "ref": "082d754b3bd54b3fc669f278f1eea955cfd23cf5"
         },
         "files": [
-            "assets/app.js",
+            "assets/app.ts",
             "assets/styles/app.css",
             "config/packages/webpack_encore.yaml",
             "package.json",
